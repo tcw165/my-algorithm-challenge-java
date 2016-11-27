@@ -1,4 +1,6 @@
-package com.my.myalgorithm.challenge;
+package com.my.myalgorithm.challenge.tree;
+
+import com.my.myalgorithm.challenge.tree.BinarySearchTree;
 
 import org.junit.Test;
 
@@ -128,7 +130,6 @@ public class BinarySearchTreeTest {
         tree.add(3);
         tree.add(4);
 
-        assertTrue("Root is 18", tree.mRoot.key.equals(18));
         assertTrue("Size should be 22", tree.size() == tree.size(true) && tree.size() == 22);
         assertTrue("The max height should be 7", tree.maxHeight() == 7);
         assertTrue("The min height should be 4", tree.minHeight() == 4);

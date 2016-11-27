@@ -5,13 +5,13 @@ Keep in mind that when we're facing an algorithm problem, try to come up with an
 
 Sort
 ----
-* [InsertionSort](test/src/main/java/com/my/myalgorithm/challenge/InsertionSort.java)
-* [MergeSort](test/src/main/java/com/my/myalgorithm/challenge/MergeSort.java)
+* [InsertionSort](test/src/main/java/com/my/myalgorithm/challenge/sorting/InsertionSort.java)
+* [MergeSort](test/src/main/java/com/my/myalgorithm/challenge/sorting/MergeSort.java)
 * HeapSort (in-progress)
-* [QuickSort](test/src/main/java/com/my/myalgorithm/challenge/QuickSort.java)
+* [QuickSort](test/src/main/java/com/my/myalgorithm/challenge/sorting/QuickSort.java)
 
 Tree
 ----
-* [BinarySearchTree](test/src/main/java/com/my/myalgorithm/challenge/BinarySearchTree.java)
+* [BinarySearchTree](test/src/main/java/com/my/myalgorithm/challenge/tree/BinarySearchTree.java)
 * RedBlackTree (in-progress)
 * Trie (in-progress)

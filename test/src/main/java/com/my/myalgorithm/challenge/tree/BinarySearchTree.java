@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.my.myalgorithm.challenge;
+package com.my.myalgorithm.challenge.tree;
 
 import java.util.HashSet;
 import java.util.Stack;

@@ -18,7 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.my.myalgorithm.challenge;
+package com.my.myalgorithm.challenge.sorting;
+
+import com.my.myalgorithm.challenge.sorting.InsertionSort;
+import com.my.myalgorithm.challenge.sorting.MergeSort;
+import com.my.myalgorithm.challenge.sorting.QuickSort;
 
 import org.junit.Test;
 

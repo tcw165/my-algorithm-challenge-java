@@ -18,9 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.my.myalgorithm.challenge;
+package com.my.myalgorithm.challenge.sorting;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
