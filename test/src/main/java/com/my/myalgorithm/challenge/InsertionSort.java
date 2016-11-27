@@ -73,8 +73,8 @@ public class InsertionSort {
             T current = list.get(i);
             T before = list.get(j);
             while (j >= 0 &&
-                   // Need to switch the before and current element.
-                   c.compare(current, before) > 0) {
+                   // Need to exchange the before and current element.
+                   c.compare(before, current) < 0) {
                 list.set(j + 1, before);
                 // Get new before element.
                 if (--j >= 0) {
@@ -84,5 +84,12 @@ public class InsertionSort {
 
             list.set(j + 1, current);
         }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Protected / Private Methods ////////////////////////////////////////////
+
+    private InsertionSort() {
+        // DO NOTHING.
     }
 }
