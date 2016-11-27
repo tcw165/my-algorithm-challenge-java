@@ -41,8 +41,34 @@ import java.util.List;
  * Wiki: https://en.wikipedia.org/wiki/Quicksort
  * <br/>
  * <br/>
- * e.g.
+ * e.g. Sort the list in the ascending order.
  * <pre>
+ * Step 1: Find the pivot which divides the array into two halves.
+ *
+ *    [5], 2 , 4 , 6 , 1 , 3
+ *     L                   H  (Pivot at low position, and compare to the high position)
+ * =>  3 , 2 , 4 , 6 , 1 ,[5]
+ *     L                   H  (Until the item is less than the pivot, exchange them)
+ * =>  3 , 2 , 4 , 6 , 1 ,[5]
+ *         L               H  (Keep advancing the opposite side of the pivot)
+ * =>  3 , 2 , 4 , 6 , 1 ,[5]
+ *             L           H  (Keep advancing the opposite side of the pivot)
+ * =>  3 , 2 , 4 , 6 , 1 ,[5]
+ *                 L       H  (Until the item is larger than the pivot)
+ * =>  3 , 2 , 4 ,[5], 1 , 6
+ *                 L       H  (Exchange the pivot with the opposite position)
+ * =>  3 , 2 , 4 ,[5], 1 , 6
+ *                 L   H      (Keep advancing the opposite side of the pivot)
+ * =>  3 , 2 , 4 , 1 ,[5], 6
+ *                 L   H      (Keep advancing the opposite side of the pivot)
+ * =>  3 , 2 , 4 , 1 ,[5], 6
+ *                    L H     (Until the low position is equal to the high position)
+ *
+ * Step 2: Break the array into low and high sub-arrays.
+ *
+ * =>  3,2,4,1,5 and 6
+ *
+ * Step 3: Repeat the above process until the sub-array is small enough.
  * </pre>
  */
 public class QuickSort {
