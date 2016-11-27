@@ -10,3 +10,8 @@ Sort
 * HeapSort (in-progress)
 * [QuickSort](test/src/main/java/com/my/myalgorithm/challenge/QuickSort.java)
 
+Tree
+----
+* [BinarySearchTree](test/src/main/java/com/my/myalgorithm/challenge/BinarySearchTree.java)
+* RedBlackTree (in-progress)
+* Trie (in-progress)
