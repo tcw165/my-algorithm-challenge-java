@@ -37,37 +37,40 @@ import java.util.List;
  * <br/>
  * <br/>
  * Wiki: https://en.wikipedia.org/wiki/Insertion_sort
+ * <br/>
+ * e.g
+ * <pre>
+ *     5,2,4,6,1,3
+ *       ^          (compare all the elements before index 1 with current one)
+ * =>  2,5,4,6,1,3
+ *       ^
+ * =>  2,5,4,6,1,3
+ *         ^        (compare all the elements before index 2 with current one)
+ * =>  2,4,5,6,1,3
+ *         ^
+ * =>  2,4,5,6,1,3
+ *           ^      (compare all the elements before index 3 with current one)
+ * =>  2,4,5,6,1,3
+ *           ^
+ * =>  2,4,5,6,1,3
+ *             ^    (compare all the elements before index 4 with current one)
+ * =>  1,2,4,5,6,3
+ *             ^
+ * =>  1,2,4,5,6,3
+ *               ^  (compare all the elements before index 5 with current one)
+ * =>  1,2,3,4,5,6
+ *               ^
+ * </pre>
  */
 public class InsertionSort {
 
     public static <T> void sort(List<T> list,
                                 Comparator<? super T> c) {
-        if (list.size() < 2) return;
+        if (list == null || list.size() < 2) return;
 
         // Anchor an index, and compare every elements before the index to the
         // anchor element. Switch them one by one if necessary until elements
         // before are all sorted.
-        // e.g.
-        //     5,2,4,6,1,3
-        //       ^
-        // =>  2,5,4,6,1,3
-        //       ^
-        // =>  2,5,4,6,1,3
-        //         ^
-        // =>  2,4,5,6,1,3
-        //         ^
-        // =>  2,4,5,6,1,3
-        //           ^
-        // =>  2,4,5,6,1,3
-        //           ^
-        // =>  2,4,5,6,1,3
-        //             ^
-        // =>  1,2,4,5,6,3
-        //             ^
-        // =>  1,2,4,5,6,3
-        //               ^
-        // =>  1,2,3,4,5,6
-        //               ^
         for (int i = 1; i < list.size(); ++i) {
             int j = i - 1;
             T current = list.get(i);

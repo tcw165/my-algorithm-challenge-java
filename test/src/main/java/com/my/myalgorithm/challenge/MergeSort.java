@@ -59,7 +59,7 @@ public class MergeSort {
 
     public static <T> void sort(List<T> list,
                                 Comparator<? super T> c) {
-        if (list.size() < 2) return;
+        if (list == null || list.size() < 2) return;
         // Sort the list.
         new Sorter<>(list, c).sort();
     }
@@ -141,11 +141,11 @@ public class MergeSort {
                         mTargetList.set(global++, mCopyList.get(left++));
                     }
                 }
-                // Maybe there are elements remaining in the left sub-array.
+                // Maybe there are remaining elements in the left sub-array.
                 while (left < mid) {
                     mTargetList.set(global++, mCopyList.get(left++));
                 }
-                // Maybe there are elements remaining in the right sub-array.
+                // Maybe there are remaining elements in the right sub-array.
                 while (right < rightEnd) {
                     mTargetList.set(global++, mCopyList.get(right++));
                 }

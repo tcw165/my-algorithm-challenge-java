@@ -28,7 +28,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class SortAlgorithmTest {
+public class SortTest {
 
     @Test
     public void insertionSortTest1() throws Exception {
@@ -91,6 +91,45 @@ public class SortAlgorithmTest {
 
         // Sort the elements in the descending order.
         MergeSort.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer lhs, Integer rhs) {
+                return lhs - rhs;
+            }
+        });
+
+        for (int i = 1; i < list.size(); ++i) {
+            assertTrue("Descending order", list.get(i) < list.get(i - 1));
+        }
+    }
+
+    @Test
+    public void quickSortTest1() throws Exception {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(7);
+        list.add(5);
+        list.add(2);
+        list.add(4);
+        list.add(8);
+        list.add(6);
+        list.add(1);
+        list.add(9);
+        list.add(3);
+
+        // Sort the elements in the ascending order.
+        QuickSort.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer lhs, Integer rhs) {
+                return rhs - lhs;
+            }
+        });
+
+        for (int i = 1; i < list.size(); ++i) {
+            assertTrue("Ascending order", list.get(i) > list.get(i - 1));
+        }
+
+        // Sort the elements in the descending order.
+        QuickSort.sort(list, new Comparator<Integer>() {
             @Override
             public int compare(Integer lhs, Integer rhs) {
                 return lhs - rhs;
