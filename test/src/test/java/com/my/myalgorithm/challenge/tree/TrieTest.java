@@ -39,4 +39,33 @@ public class TrieTest {
         assertTrue("Must contain \"........\"", trie.search("........"));
         assertTrue("Must not contain \".........\"", !trie.search("........."));
     }
+
+    /**
+     * Cases from Leetcode.
+     */
+    @Test
+    public void test2() throws Exception {
+        AtoZTrie trie = new AtoZTrie();
+
+        trie.insert("ran");
+        trie.insert("rune");
+        trie.insert("runner");
+        trie.insert("runs");
+        trie.insert("add");
+        trie.insert("adds");
+        trie.insert("adder");
+        trie.insert("addee");
+
+        assertTrue("Must contain \"r.n\"", trie.search("r.n"));
+        assertTrue("Must not contain \"ru.n.e\"", !trie.search("ru.n.e"));
+        assertTrue("Must contain \"add\"", trie.search("add"));
+        assertTrue("Must contain \"add.\"", trie.search("add."));
+        assertTrue("Must contain \"adds\"", trie.search("adds"));
+        assertTrue("Must contain \"adde.\"", trie.search("adde."));
+        assertTrue("Must not contain \".an.\"", !trie.search(".an."));
+        assertTrue("Must contain \"...s\"", trie.search("...s"));
+        assertTrue("Must contain \"....e.\"", trie.search("....e."));
+        assertTrue("Must not contain \".......\"", !trie.search("......."));
+        assertTrue("Must not contain \"..n.r\"", !trie.search("..n.r"));
+    }
 }

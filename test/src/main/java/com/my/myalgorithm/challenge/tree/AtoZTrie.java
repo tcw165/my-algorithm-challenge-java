@@ -20,6 +20,7 @@
 
 package com.my.myalgorithm.challenge.tree;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -140,7 +141,6 @@ public class AtoZTrie {
 
         // To lower case.
         word = word.toLowerCase();
-        boolean isFound = false;
         // Prepare the visited stack, the size of the stack indicates the
         // letter position.
         Stack<NodeExtra> visited = new Stack<>();
@@ -152,6 +152,7 @@ public class AtoZTrie {
             // Search by going down.
             char c = word.charAt(visited.size() - 1);
             int i = c - 'a';
+            boolean ifFoundChild = false;
             if (c >= 'a' && c <= 'z' &&
                 i > now.visitedChildIndex &&
                 now.node.children[i] != null) {
@@ -159,43 +160,41 @@ public class AtoZTrie {
                 visited.push(new NodeExtra(now.node.children[i]));
                 // Update the number of visited children.
                 now.visitedChildIndex = i;
+                ifFoundChild = true;
             } else if (c == '.') {
                 // Keep going down when the it is a wildcard searching.
-                boolean ifFoundChild = false;
+                // TODO: Improvement with binary-search?
                 for (i = now.visitedChildIndex + 1;
                      i < now.node.children.length;
                      ++i) {
+                    // Update the visited index.
+                    now.visitedChildIndex = i;
                     if (now.node.children[i] != null) {
                         visited.push(new NodeExtra(now.node.children[i]));
                         // Update the number of visited children.
-                        now.visitedChildIndex = i;
                         ifFoundChild = true;
                         break;
                     }
                 }
-
-                if (!ifFoundChild) {
-                    // Going up if the last letter is a wildcard character, so
-                    // that it could keep searching for other possibility.
-                    visited.pop();
-                }
-            } else {
-                visited.pop();
             }
 
             // Match the string or pattern when the traversal reaches the bottom?
             if (visited.size() == word.length() + 1) {
                 if (visited.lastElement().node.endOfWord) {
-                    isFound = true;
+                    return true;
                 } else {
-                    // Going up if the last letter is a wildcard character, so
-                    // that it could keep searching for other possibility.
-                    visited.pop();
+                    ifFoundChild = false;
                 }
+            }
+
+            // Going up if the last letter is a wildcard character, so that it
+            // could keep searching for other possibility.
+            if (!ifFoundChild) {
+                visited.pop();
             }
         }
 
-        return isFound;
+        return false;
     }
 
     public boolean startsWith(String prefix) {
@@ -214,32 +213,6 @@ public class AtoZTrie {
 
         return node != null &&
                i == prefix.length();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Protected / Private Methods ////////////////////////////////////////////
-
-//    private Node findChildBy(Node node, char c) {
-//        if (node == null) return null;
-//
-//        if (c >= 'a' && c <= 'z') {
-//            return node.children[c - 'a'];
-//        } else if (c == '.') {
-//
-//        } else {
-//            return null;
-//        }
-//    }
-
-    private Node addChild(Node parent, char c) {
-        if (parent == null) return null;
-        int i = c - 'a';
-
-        Node child = new Node(parent);
-
-        parent.children[i] = child;
-
-        return child;
     }
 
     ///////////////////////////////////////////////////////////////////////////
