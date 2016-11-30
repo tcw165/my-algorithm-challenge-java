@@ -27,5 +27,16 @@ public class TrieTest {
                    trie.search("keyword") && trie.startsWith("keyword"));
         assertTrue("search(\"ke\") == false && startWith(\"ke\") == true",
                    !trie.search("ke") && trie.startsWith("ke"));
+        assertTrue("Must contain \".\"", trie.search("."));
+        assertTrue("Must contain \"..\"", trie.search(".."));
+        assertTrue("Must contain \"a.\"", trie.search("a."));
+        assertTrue("Must contain \".b\"", trie.search(".b"));
+        assertTrue("Must contain \"...\"", trie.search("..."));
+        assertTrue("Must contain \"k..\"", trie.search("k.."));
+        assertTrue("Must contain \".e.\"", trie.search(".e."));
+        assertTrue("Must contain \"..y\"", trie.search("..y"));
+        assertTrue("Must contain \".......d\"", trie.search(".......d"));
+        assertTrue("Must contain \"........\"", trie.search("........"));
+        assertTrue("Must not contain \".........\"", !trie.search("........."));
     }
 }
