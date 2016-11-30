@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class TrieTest {
+public class AtoZTrieTest {
 
     @Test
     public void test1() throws Exception {
