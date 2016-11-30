@@ -14,4 +14,8 @@ Tree
 ----
 * [BinarySearchTree](test/src/main/java/com/my/myalgorithm/challenge/tree/BinarySearchTree.java)
 * RedBlackTree (in-progress)
-* Trie (in-progress)
+* [Trie](test/src/main/java/com/my/myalgorithm/challenge/tree/AtoZTrie.java)
+
+Quiz
+----
+* [find the biggest plus sign](test/src/test/java/com/my/myalgorithm/challenge/FindBiggestPlusSign.java)
