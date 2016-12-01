@@ -45,10 +45,10 @@ import static junit.framework.Assert.assertTrue;
  * <br/>
  * https://www.careercup.com/question?id=5653583535013888
  */
-public class FindBiggestPlusSign {
+public class Quiz_FindBiggestPlusSign {
 
     /**
-     * Using Dynamic Programming.
+     * Using BFS/DFS.
      */
     @Test
     public void test1() throws Exception {
@@ -77,15 +77,15 @@ public class FindBiggestPlusSign {
         }
     }
 
-    /**
-     * Using BFS/DFS.
-     */
-    @Test
-    public void test2() throws Exception {
-
-    }
-
     public PlusSign findBiggestPlusSignBFS(int[][] matrix) {
+        // TODO: Find the center of the matrix.
+
+        // TODO: Construct a 4-ary tree from the center so that the valid elements
+        // TODO: located on the border are the leafs, and it may speed up a lot.
+
+        // TODO: Do BFS to find the biggest plus sign.
+
+
         PlusSign maxSign = new PlusSign();
 
         // Skip the elements located on the border.
