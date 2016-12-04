@@ -85,6 +85,7 @@ public class Quiz_FindUnmatchingPair {
     private NonMatchPair findFirstNonMatchPair(int[] tree1,
                                                int[] tree2) {
         NonMatchPair pair = null;
+        // Find the leafs.
         List<Integer> leafs1 = getLeafs(tree1);
         List<Integer> leafs2 = getLeafs(tree2);
 

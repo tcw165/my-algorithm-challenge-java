@@ -23,8 +23,6 @@ package com.my.myalgorithm.challenge;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import static junit.framework.Assert.assertTrue;
@@ -51,7 +49,7 @@ import static junit.framework.Assert.assertTrue;
  * <br/>
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
  */
-public class Quiz_LetterCombinationsOfPhoneNumber {
+public class Quiz_NumberOfIslands {
 
     @Test
     public void answer1() throws Exception {
