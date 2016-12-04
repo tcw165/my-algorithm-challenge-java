@@ -23,9 +23,11 @@ package com.my.myalgorithm.challenge;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -95,47 +97,42 @@ public class Quiz_NumberOfIslands {
 
     private int mIterationCount = 0;
 
-    private int numIslands(char[][] grid) {
-        List<Island> islands = new ArrayList<>();
+    private Map<Loc, Integer> mIslandMap;
 
-        // DEBUG: Accumulation.
+    private int numIslands(char[][] grid) {
+        // Create new map.
+        mIslandMap = new HashMap<>();
+
+        int num = 0;
+
+        // DEBUG: Accumulate the iteration.
         mIterationCount = 0;
 
         for (int y = 0; y < grid.length; ++y) {
             for (int x = 0; x < grid[y].length; ++x) {
+                // DEBUG: Accumulate the iteration.
+                ++mIterationCount;
+
                 if (Character.getNumericValue(grid[y][x]) == 0) continue;
 
-                boolean isNew = true;
-                for (Island island : islands) {
-                    // DEBUG: Accumulation.
-                    ++mIterationCount;
-
-                    if (island.contains(x, y)) {
-                        isNew = false;
-                        break;
-                    }
+                if (!mIslandMap.containsKey(new Loc(x, y))) {
+                    // If the location is not present in the island map, it must
+                    // be a new island.
+                    ++num;
+                    floodFillIsland(num, grid, x, y);
                 }
-                if (isNew) {
-                    islands.add(floodFillIsland(new Island(),
-                                                grid,
-                                                x,
-                                                y));
-                }
-
-                // DEBUG: Accumulation.
-                ++mIterationCount;
             }
         }
 
-        return islands.size();
+        return num;
     }
 
-    private Island floodFillIsland(Island island,
-                                   char[][] grid,
-                                   int x,
-                                   int y) {
+    private void floodFillIsland(int islandId,
+                                 char[][] grid,
+                                 int x,
+                                 int y) {
         // Mark the position is part of the island.
-        island.add(x, y);
+        mIslandMap.put(new Loc(x, y), islandId);
 
         // Do BFS.
         Stack<Loc> todo = new Stack<>();
@@ -144,63 +141,49 @@ public class Quiz_NumberOfIslands {
         int right = x + 1;
         if (right < grid[y].length &&
             Character.getNumericValue(grid[y][right]) > 0 &&
-            !island.contains(right, y)) {
+            !mIslandMap.containsKey(new Loc(right, y))) {
             todo.push(new Loc(right, y));
         }
         // Check bottom one.
         int bottom = y + 1;
         if (bottom < grid.length &&
             Character.getNumericValue(grid[bottom][x]) > 0 &&
-            !island.contains(x, bottom)) {
+            !mIslandMap.containsKey(new Loc(x, bottom))) {
             todo.push(new Loc(x, bottom));
         }
         // Check left one.
         int left = x - 1;
         if (left >= 0 &&
             Character.getNumericValue(grid[y][left]) > 0 &&
-            !island.contains(left, y)) {
+            !mIslandMap.containsKey(new Loc(left, y))) {
             todo.push(new Loc(left, y));
         }
         // Check top one.
         int top = y - 1;
         if (top >= 0 &&
             Character.getNumericValue(grid[top][x]) > 0 &&
-            !island.contains(x, top)) {
+            !mIslandMap.containsKey(new Loc(x, top))) {
             todo.push(new Loc(x, top));
         }
 
         while (!todo.isEmpty()) {
-            // DEBUG: Accumulation.
+            // DEBUG: Accumulate the iteration.
             ++mIterationCount;
 
             Loc next = todo.pop();
-            floodFillIsland(island, grid, next.x, next.y);
+            floodFillIsland(islandId, grid, next.x, next.y);
         }
-
-        return island;
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Clazz //////////////////////////////////////////////////////////////////
-
-    private static class Island {
-        Set<Loc> area = new HashSet<>();
-
-        void add(int x, int y) {
-            area.add(new Loc(x, y));
-        }
-
-        boolean contains(int x, int y) {
-            return area.contains(new Loc(x, y));
-        }
-    }
 
     private static class Loc {
 
         int x;
         int y;
 
-        public Loc(int x, int y) {
+        Loc(int x, int y) {
             this.x = x;
             this.y = y;
         }
