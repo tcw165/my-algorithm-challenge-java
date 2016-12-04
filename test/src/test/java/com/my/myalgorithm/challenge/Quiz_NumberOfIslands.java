@@ -23,126 +23,205 @@ package com.my.myalgorithm.challenge;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.Stack;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Given a digit string, return all possible letter combinations that the number
- * could represent.
- * <br/>
- * A mapping of digit to letters (just like on the telephone buttons) is given
- * below.
+ * Given a 2d grid map of '1's (land) and '0's (water), count the number of
+ * islands. An island is surrounded by water and is formed by connecting
+ * adjacent lands horizontally or vertically. You may assume all four edges of
+ * the grid are all surrounded by water.
  * <br/>
  * <pre>
- * [---]    [abc]    [def]
- *   1        2        3
  *
- * [ghi]    [jkl]    [mno]
- *   4        5        6
+ *   11110
+ *   11010
+ *   11000
+ *   00000
  *
- * [pqrs]   [tuv]    [wxyz]
- *   7        8        9
+ * Answer: 1
+ *
+ *   11000
+ *   11000
+ *   00100
+ *   00011
+ *
+ * Answer: 3
  * </pre>
- * <br/>
  * Reference:
  * <br/>
- * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+ * https://leetcode.com/problems/number-of-islands/
  */
 public class Quiz_NumberOfIslands {
 
     @Test
     public void answer1() throws Exception {
-        printLetters(letterCombinations("23"));
-        printLetters(letterCombinations("238"));
+        assertTrue(numIslands(new char[][]{
+            {'1', '1', '1', '1', '0'},
+            {'1', '1', '0', '1', '0'},
+            {'1', '1', '0', '0', '0'},
+            {'0', '0', '0', '0', '0'}
+        }) == 1);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.", mIterationCount));
+
+        assertTrue(numIslands(new char[][]{
+            {'1', '1', '0', '0', '0'},
+            {'1', '1', '0', '0', '0'},
+            {'0', '0', '1', '0', '0'},
+            {'0', '0', '0', '1', '1'}
+        }) == 3);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.", mIterationCount));
+
+        assertTrue(numIslands(new char[][]{
+            {'1', '1', '0', '1', '1', '1', '0', '1'},
+            {'1', '1', '1', '1', '0', '1', '0', '1'},
+            {'0', '1', '0', '0', '0', '1', '1', '0'},
+            {'1', '1', '0', '1', '1', '1', '1', '0'},
+            {'1', '0', '0', '1', '1', '0', '0', '0'},
+            {'1', '1', '0', '1', '1', '1', '0', '0'},
+            {'0', '0', '1', '1', '1', '0', '1', '1'},
+            {'1', '1', '0', '1', '1', '0', '1', '0'}
+        }) == 4);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.", mIterationCount));
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Protected / Private Methods ////////////////////////////////////////////
 
-    private char[][] mAlphabetDict = new char[][]{
-        // 0
-        {},
-        // 1
-        {},
-        // 2
-        {'a', 'b', 'c'},
-        // 3
-        {'d', 'e', 'f'},
-        // 4
-        {'g', 'h', 'i'},
-        // 5
-        {'j', 'k', 'l'},
-        // 6
-        {'m', 'n', 'o'},
-        // 7
-        {'p', 'q', 'r', 's'},
-        // 8
-        {'t', 'u', 'v'},
-        // 9
-        {'w', 'x', 'y', 'z'}
-    };
+    private int mIterationCount = 0;
 
-    /**
-     * Example:
-     * <pre>
-     * Given "23"
-     *
-     * "23" => [a,b,c], total 3 possibility => [a,b,c]
-     *  ^
-     *
-     * "23" => [d,e,f], total 3 possibility => [ad,bd,cd] +
-     *   ^                                     [ae,be,ce] +
-     *                                         [af,bf,cf]
-     * </pre>
-     */
-    private List<String> letterCombinations(String digits) {
-        List<String> comb = new ArrayList<>();
+    private int numIslands(char[][] grid) {
+        List<Island> islands = new ArrayList<>();
 
-        comb.add("");
+        // DEBUG: Accumulation.
+        mIterationCount = 0;
 
-        for (int i = 0; i < digits.length(); ++i) {
-            int key = Character.getNumericValue(digits.charAt(i));
-            char dict[] = mAlphabetDict[key];
-            List<String> clone = new ArrayList<>();
-            for (int j = 0; j < comb.size(); ++j) {
-                for (char alphabet : dict) {
-                    clone.add(comb.get(j).concat(String.valueOf(alphabet)));
+        for (int y = 0; y < grid.length; ++y) {
+            for (int x = 0; x < grid[y].length; ++x) {
+                if (Character.getNumericValue(grid[y][x]) == 0) continue;
+
+                boolean isNew = true;
+                for (Island island : islands) {
+                    // DEBUG: Accumulation.
+                    ++mIterationCount;
+
+                    if (island.contains(x, y)) {
+                        isNew = false;
+                        break;
+                    }
                 }
+                if (isNew) {
+                    islands.add(floodFillIsland(new Island(),
+                                                grid,
+                                                x,
+                                                y));
+                }
+
+                // DEBUG: Accumulation.
+                ++mIterationCount;
             }
-            comb = clone;
         }
 
-        return comb;
+        return islands.size();
     }
 
-    /**
-     * The solution with highest votes.
-     * https://discuss.leetcode.com/topic/8465/my-java-solution-with-fifo-queue
-     */
-//    public List<String> letterCombinations(String digits) {
-//        LinkedList<String> ans = new LinkedList<String>();
-//        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-//        ans.add("");
-//        for(int i =0; i<digits.length();i++){
-//            int x = Character.getNumericValue(digits.charAt(i));
-//            while(ans.peek().length()==i){
-//                String t = ans.remove();
-//                for(char s : mapping[x].toCharArray())
-//                    ans.add(t+s);
-//            }
-//        }
-//        return ans;
-//    }
+    private Island floodFillIsland(Island island,
+                                   char[][] grid,
+                                   int x,
+                                   int y) {
+        // Mark the position is part of the island.
+        island.add(x, y);
 
-    private void printLetters(List<String> letters) {
-        System.out.print("[");
-        for (int i = 0; i < letters.size(); ++i) {
-            System.out.print(letters.get(i));
-            if (i < letters.size() - 1) {
-                System.out.print(",");
-            }
+        // Do BFS.
+        Stack<Loc> todo = new Stack<>();
+
+        // Check right one.
+        int right = x + 1;
+        if (right < grid[y].length &&
+            Character.getNumericValue(grid[y][right]) > 0 &&
+            !island.contains(right, y)) {
+            todo.push(new Loc(right, y));
         }
-        System.out.println("]");
+        // Check bottom one.
+        int bottom = y + 1;
+        if (bottom < grid.length &&
+            Character.getNumericValue(grid[bottom][x]) > 0 &&
+            !island.contains(x, bottom)) {
+            todo.push(new Loc(x, bottom));
+        }
+        // Check left one.
+        int left = x - 1;
+        if (left >= 0 &&
+            Character.getNumericValue(grid[y][left]) > 0 &&
+            !island.contains(left, y)) {
+            todo.push(new Loc(left, y));
+        }
+        // Check top one.
+        int top = y - 1;
+        if (top >= 0 &&
+            Character.getNumericValue(grid[top][x]) > 0 &&
+            !island.contains(x, top)) {
+            todo.push(new Loc(x, top));
+        }
+
+        while (!todo.isEmpty()) {
+            // DEBUG: Accumulation.
+            ++mIterationCount;
+
+            Loc next = todo.pop();
+            floodFillIsland(island, grid, next.x, next.y);
+        }
+
+        return island;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Clazz //////////////////////////////////////////////////////////////////
+
+    private static class Island {
+        Set<Loc> area = new HashSet<>();
+
+        void add(int x, int y) {
+            area.add(new Loc(x, y));
+        }
+
+        boolean contains(int x, int y) {
+            return area.contains(new Loc(x, y));
+        }
+    }
+
+    private static class Loc {
+
+        int x;
+        int y;
+
+        public Loc(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Loc loc = (Loc) o;
+
+            if (x != loc.x) return false;
+            return y == loc.y;
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = x;
+            result = 31 * result + y;
+            return result;
+        }
     }
 }
