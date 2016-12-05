@@ -63,31 +63,28 @@ public class Quiz_FindAmazingNumbers {
 
     private int findStartPosition(int[] circularArray) {
         int start = 0;
-        int maxAmazingSum = 0;
+        int maxAmazingNum = 0;
 
         // DEBUG: iterations.
         mIterations = 0;
 
         for (int i = 0; i < circularArray.length; ++i) {
 
-            int amazingSum = 0;
+            int amazingNum = 0;
             for (int j = 0; j < circularArray.length; ++j) {
 
                 // DEBUG: iterations.
                 ++mIterations;
 
                 int k = j + i;
-                if (k >= circularArray.length) {
-                    k -= circularArray.length;
-                }
                 // Add up the amazing number.
-                if (circularArray[k] <= j) {
-                    amazingSum += circularArray[k];
+                if (circularArray[k % circularArray.length] <= j) {
+                    ++amazingNum;
                 }
             }
 
-            if (amazingSum > maxAmazingSum) {
-                maxAmazingSum = amazingSum;
+            if (amazingNum > maxAmazingNum) {
+                maxAmazingNum = amazingNum;
                 start = i;
             }
         }
