@@ -1,5 +1,5 @@
 # algorithm-challenge-java
-A collection of my Java solutions of questions from CareerCup, GlassDoor, LeetCode, or other site that hosts questions. Give me a ticket if you have any questions or want to share your ideas with me 😁.
+A collection of my Java solutions of questions from CareerCup, GlassDoor, LeetCode, ProjectEuler, or other site that hosts questions. Give me a ticket if you have any questions or want to share your ideas with me 😁.
 
 Keep in mind that when we're facing an algorithm problem, try to come up with an application for extending the solution for the problem. So that we can make the the abstract algorithm real for us.
 
@@ -18,4 +18,7 @@ Tree
 
 Quiz
 ----
-* [find the biggest plus sign](test/src/test/java/com/my/myalgorithm/challenge/FindBiggestPlusSign.java)
+* [Find the biggest plus sign](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindBiggestPlusSign.java)
+* [Find the unmatching pair](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindUnmatchingPair.java)
+* [Find the letter combination of phone number](test/src/test/java/com/my/myalgorithm/challenge/Quiz_LetterCombinationsOfPhoneNumber.java)
+* [Find the number of islands](test/src/test/java/com/my/myalgorithm/challenge/Quiz_NumberOfIslands.java)
