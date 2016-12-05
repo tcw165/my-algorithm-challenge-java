@@ -23,6 +23,10 @@ package com.my.myalgorithm.challenge;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -52,8 +56,12 @@ public class Quiz_FindAmazingNumbers {
 
     @Test
     public void answer1() throws Exception {
-        Assert.assertTrue(1 == findStartPosition(new int[]{1, 0, 0}));
-        Assert.assertTrue(2 == findStartPosition(new int[]{2, 1, 0, 0}));
+//        Assert.assertTrue(1 == findStartPositionByBrutalForce(new int[]{1, 0, 0}));
+//        Assert.assertTrue(2 == findStartPositionByBrutalForce(new int[]{2, 1, 0, 0}));
+
+        Assert.assertTrue(0 == findStartPositionByBrutalForce(new int[]{4, 2, 8, 2, 4, 5, 3}));
+        System.out.println(
+            findStartPositionByInterval(new int[]{4, 2, 8, 2, 4, 5, 3}));
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -61,7 +69,10 @@ public class Quiz_FindAmazingNumbers {
 
     private int mIterations = 0;
 
-    private int findStartPosition(int[] circularArray) {
+    /**
+     * Brutal force solution.
+     */
+    private int findStartPositionByBrutalForce(int[] circularArray) {
         int start = 0;
         int maxAmazingNum = 0;
 
@@ -90,9 +101,170 @@ public class Quiz_FindAmazingNumbers {
         }
 
         System.out.println(String.format(Locale.ENGLISH,
-                                         "Total %d iterations.",
+                                         "Brutal force solution, total %d iterations.",
                                          mIterations));
 
         return start;
+    }
+
+    /**
+     * Solution of finding the interval that maximize the amount of valid
+     * amazing numbers.
+     * <pre>
+     *
+     * Example: arr = [4,2,8,2,4,5,3]
+     *
+     * 1) if arr[0] can be used, the start index should be between [1..3].
+     *   arr   = [4,2,8,2,4,5,3]
+     *            ^
+     *   index =  6,0,1,2,3,4,5
+     *                 to
+     *   index =  4,5,6,0,1,2,3
+     *
+     * 2) if arr[1] can be used, the start index should be between [2..6].
+     *   arr   = [4,2,8,2,4,5,3]
+     *              ^
+     *   index =  5,6,0,1,2,3,4
+     *                 to
+     *   index =  1,2,3,4,5,6,0
+     *
+     * 3) arr[2] can NOT be used because it's greater than the array length.
+     *
+     * 4) if arr[3] can be used, the start index should be between [4..8].
+     *   arr   = [4,2,8,2,4,5,3]
+     *                  ^
+     *   index =  3,4,5,6,0,1,2
+     *                 to
+     *   index =  6,0,1,2,3,4,5
+     *
+     * 5) if arr[4] can be used, the start index should be between [4..8].
+     *   arr   = [4,2,8,2,4,5,3]
+     *                    ^
+     *   index =  2,3,4,5,6,0,1
+     *                 to
+     *   index =  0,1,2,3,4,5,6
+     *
+     * 6) if arr[5] can be used, the start index should be between [6..7].
+     *   arr   = [4,2,8,2,4,5,3]
+     *                      ^
+     *   index =  1,2,3,4,5,6,0
+     *                 to
+     *   index =  0,1,2,3,4,5,6
+     *
+     * 7) if arr[6] can be used, the start index should be between [0..4].
+     *   arr   = [4,2,8,2,4,5,3]
+     *                        ^
+     *   index =  0,1,2,3,4,5,6
+     *                 to
+     *   index =  4,5,6,0,1,2,3
+     *
+     * The problem becomes: "what is the interval that maximize the possibility
+     * to have more amazing numbers?"
+     *
+     * index | 0 | 1 | 2 | 3 | 4 | 5 | 6
+     * ------+---+---+---+---+---+---+---
+     *       |   |###########|   |   |     if [0] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |   |   |###################  if [1] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |#######|   |   |###########  if [3] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |###|   |   |   |   |#######  if [4] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |###|   |   |   |   |   |###  if [5] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |###############|   |   |     if [6] can be used...
+     * ------+---+---+---+---+---+---+---
+     *
+     * </pre>
+     */
+    private int findStartPositionByInterval(int[] circularArray) {
+        // DEBUG: iterations.
+        mIterations = 0;
+
+        // Find the interval for each element that can be used.
+        // O(n).
+        List<Interval> intervals = new ArrayList<>();
+        for (int i = 0; i < circularArray.length; ++i) {
+            // DEBUG: iterations.
+            ++mIterations;
+
+            if (circularArray[i] >= circularArray.length) continue;
+
+            int start = i + 1;
+            int end = i + circularArray.length - circularArray[i];
+
+            intervals.add(new Interval(start, end));
+            System.out.println(String.format(Locale.ENGLISH, "[%d..%d]", start, end));
+        }
+
+        // Find the one that has the maximum overlap with the others.
+        // O(n * log(n)) if it is quick-sort liked sorting algorithm.
+//        Collections.sort(intervals, new Comparator<Interval>() {
+//            @Override
+//            public int compare(Interval lhs, Interval rhs) {
+//                return lhs.begin - rhs.begin;
+//            }
+//        });
+        // O(n^2).
+        int[] count = new int[circularArray.length];
+        for (Interval interval : intervals) {
+            for (int i = interval.begin; i <= interval.end; ++i) {
+                // DEBUG: iterations.
+                ++mIterations;
+
+                ++count[i % circularArray.length];
+            }
+        }
+
+        int start = 0;
+        int max = 0;
+        for (int i = 0; i < count.length; ++i) {
+            // DEBUG: iterations.
+            ++mIterations;
+
+            if (count[i] > max) {
+                max = count[i];
+                start = i;
+            }
+        }
+
+        System.out.println(String.format(Locale.ENGLISH,
+                                         "Interval solution, total %d iterations.",
+                                         mIterations));
+
+        return start;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Clazz //////////////////////////////////////////////////////////////////
+
+    private static class Interval {
+        int begin;
+        int end;
+
+        Interval(int begin,
+                 int end) {
+            this.begin = begin;
+            this.end = end;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Interval interval = (Interval) o;
+
+            if (begin != interval.begin) return false;
+            return end == interval.end;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = begin;
+            result = 31 * result + end;
+            return result;
+        }
     }
 }
