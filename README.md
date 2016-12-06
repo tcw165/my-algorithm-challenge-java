@@ -22,3 +22,4 @@ Quiz
 * [Find the unmatching pair](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindUnmatchingPair.java)
 * [Find the letter combination of phone number](test/src/test/java/com/my/myalgorithm/challenge/Quiz_LetterCombinationsOfPhoneNumber.java)
 * [Find the number of islands](test/src/test/java/com/my/myalgorithm/challenge/Quiz_NumberOfIslands.java)
+* [Find the amazing numbers](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindAmazingNumbers.java)

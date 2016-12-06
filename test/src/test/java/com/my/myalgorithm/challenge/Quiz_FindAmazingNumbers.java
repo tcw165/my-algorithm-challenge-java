@@ -24,10 +24,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Define amazing number as: its value is less than or equal to its index. Given
@@ -56,12 +56,13 @@ public class Quiz_FindAmazingNumbers {
 
     @Test
     public void answer1() throws Exception {
-//        Assert.assertTrue(1 == findStartPositionByBrutalForce(new int[]{1, 0, 0}));
-//        Assert.assertTrue(2 == findStartPositionByBrutalForce(new int[]{2, 1, 0, 0}));
+        assertTrue(1 == findStartPositionByBrutalForce(new int[]{1, 0, 0}));
+        assertTrue(2 == findStartPositionByBrutalForce(new int[]{2, 1, 0, 0}));
+        assertTrue(0 == findStartPositionByBrutalForce(new int[]{4, 2, 8, 2, 4, 5, 3}));
 
-        Assert.assertTrue(0 == findStartPositionByBrutalForce(new int[]{4, 2, 8, 2, 4, 5, 3}));
-        System.out.println(
-            findStartPositionByInterval(new int[]{4, 2, 8, 2, 4, 5, 3}));
+        assertTrue(1 == findStartPositionByInterval(new int[]{1, 0, 0}));
+        assertTrue(2 == findStartPositionByInterval(new int[]{2, 1, 0, 0}));
+        assertTrue(0 == findStartPositionByInterval(new int[]{4, 2, 8, 2, 4, 5, 3}));
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -167,15 +168,40 @@ public class Quiz_FindAmazingNumbers {
      * ------+---+---+---+---+---+---+---
      *       |   |   |###################  if [1] can be used...
      * ------+---+---+---+---+---+---+---
-     *       |#######|   |   |###########  if [3] can be used...
+     *       |#######|   |   |   |   |     if [3] can be used...
      * ------+---+---+---+---+---+---+---
-     *       |###|   |   |   |   |#######  if [4] can be used...
+     *       |   |   |   |   |###########
      * ------+---+---+---+---+---+---+---
-     *       |###|   |   |   |   |   |###  if [5] can be used...
+     *       |###|   |   |   |   |   |     if [4] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |   |   |   |   |   |#######
+     * ------+---+---+---+---+---+---+---
+     *       |###|   |   |   |   |   |     if [5] can be used...
+     * ------+---+---+---+---+---+---+---
+     *       |   |   |   |   |   |   |###
      * ------+---+---+---+---+---+---+---
      *       |###############|   |   |     if [6] can be used...
      * ------+---+---+---+---+---+---+---
      *
+     * We got 9 intervals: [1..3], [2..6], [0..1], [4..6], [0..0], [5..6],
+     *                     [0..0], [6..6], [0..3]
+     *
+     * We could solve it by having an array storing the number of all the begin
+     * and end numbers.
+     *
+     *    Begin: [4,  1,  1, 0,  1, 1, 1]
+     *    + end: [0, -2, -1, 0, -2, 0, 0]
+     *   ---------------------------------
+     *           [4, -1,  0, 0, -1, 1, 1]
+     *            ^   ^   ^  ^   ^  ^  ^
+     *            |   |   |  |   |  |  |
+     *            |   |   |  |   |  |  +---- 4 left
+     *            |   |   |  |   |  +------- 3 left
+     *            |   |   |  |   +---------- 2 left
+     *            |   |   |  +-------------- 3 left
+     *            |   |   +----------------- 3 left
+     *            |   +--------------------- 3 left
+     *            +------------------------- 4 left <-- The answer!
      * </pre>
      */
     private int findStartPositionByInterval(int[] circularArray) {
@@ -183,7 +209,7 @@ public class Quiz_FindAmazingNumbers {
         mIterations = 0;
 
         // Find the interval for each element that can be used.
-        // O(n).
+        // Complexity: O(n).
         List<Interval> intervals = new ArrayList<>();
         for (int i = 0; i < circularArray.length; ++i) {
             // DEBUG: iterations.
@@ -192,43 +218,55 @@ public class Quiz_FindAmazingNumbers {
             if (circularArray[i] >= circularArray.length) continue;
 
             int start = i + 1;
-            int end = i + circularArray.length - circularArray[i];
+            int till = i + circularArray.length - circularArray[i];
 
-            intervals.add(new Interval(start, end));
-            System.out.println(String.format(Locale.ENGLISH, "[%d..%d]", start, end));
-        }
-
-        // Find the one that has the maximum overlap with the others.
-        // O(n * log(n)) if it is quick-sort liked sorting algorithm.
-//        Collections.sort(intervals, new Comparator<Interval>() {
-//            @Override
-//            public int compare(Interval lhs, Interval rhs) {
-//                return lhs.begin - rhs.begin;
-//            }
-//        });
-        // O(n^2).
-        int[] count = new int[circularArray.length];
-        for (Interval interval : intervals) {
-            for (int i = interval.begin; i <= interval.end; ++i) {
-                // DEBUG: iterations.
-                ++mIterations;
-
-                ++count[i % circularArray.length];
+            // We break the interval spanning over the array into two intervals
+            // so that it's more easy to calculate the maximum overlapped
+            // interval.
+            if (start < circularArray.length &&
+                till < circularArray.length) {
+                intervals.add(new Interval(start, till));
+            } else {
+                if (start >= circularArray.length) {
+                    intervals.add(new Interval(start % circularArray.length,
+                                               till % circularArray.length));
+                } else {
+                    // Break it into two intervals.
+                    intervals.add(new Interval(start, circularArray.length - 1));
+                    intervals.add(new Interval(0, till % circularArray.length));
+                }
             }
+//            System.out.println(String.format(Locale.ENGLISH, "[%d..%d]", start, till));
         }
 
-        int start = 0;
-        int max = 0;
-        for (int i = 0; i < count.length; ++i) {
+        // Use begin record and till record to get the maximum interval.
+        // Complexity: O(n).
+        int[] intervalRecord = new int[circularArray.length];
+        for (Interval interval : intervals) {
             // DEBUG: iterations.
             ++mIterations;
 
-            if (count[i] > max) {
-                max = count[i];
+            ++intervalRecord[interval.begin];
+            if (interval.till + 1 < circularArray.length) {
+                --intervalRecord[interval.till + 1];
+            }
+        }
+        // Complexity: O(n).
+        int start = 0;
+        int max = 0;
+        for (int i = 0, sum = 0; i < intervalRecord.length; ++i) {
+            // DEBUG: iterations.
+            ++mIterations;
+
+            sum += intervalRecord[i];
+            if (sum > max) {
+                max = sum;
                 start = i;
             }
         }
 
+        // Time complexity:
+        // O(n) +
         System.out.println(String.format(Locale.ENGLISH,
                                          "Interval solution, total %d iterations.",
                                          mIterations));
@@ -241,12 +279,12 @@ public class Quiz_FindAmazingNumbers {
 
     private static class Interval {
         int begin;
-        int end;
+        int till;
 
         Interval(int begin,
-                 int end) {
+                 int till) {
             this.begin = begin;
-            this.end = end;
+            this.till = till;
         }
 
         @Override
@@ -257,13 +295,13 @@ public class Quiz_FindAmazingNumbers {
             Interval interval = (Interval) o;
 
             if (begin != interval.begin) return false;
-            return end == interval.end;
+            return till == interval.till;
         }
 
         @Override
         public int hashCode() {
             int result = begin;
-            result = 31 * result + end;
+            result = 31 * result + till;
             return result;
         }
     }
