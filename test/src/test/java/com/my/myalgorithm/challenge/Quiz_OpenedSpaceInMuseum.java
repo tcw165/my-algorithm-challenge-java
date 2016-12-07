@@ -23,6 +23,7 @@ package com.my.myalgorithm.challenge;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Stack;
@@ -43,6 +44,8 @@ public class Quiz_OpenedSpaceInMuseum {
 
     @Test
     public void answer1() throws Exception {
+        String[][] input, output;
+
         // O O O
         // O W W
         // G O G
@@ -52,14 +55,22 @@ public class Quiz_OpenedSpaceInMuseum {
         // 2 3 4
         // 1 W W
         // G 1 G
-        String[][] input = new String[][]{
+        input = new String[][]{
             {"O", "O", "O"},
             {"O", "W", "W"},
             {"G", "O", "G"}};
-        String[][] output = markOpenedSpace(input);
+        // Method 1.
+        output = markOpenedSpaceByTopBottomAndBottomUp(input);
         System.out.println("Input:");
         print(input);
-        System.out.println("Output:");
+        System.out.println("Output from markOpenedSpaceByTopBottomAndBottomUp():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+        // Method 2.
+        output = markOpenedSpaceByBFSAndFIFO(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByBFSAndFIFO():");
         print(output);
         System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
 
@@ -79,10 +90,18 @@ public class Quiz_OpenedSpaceInMuseum {
             {"O", "W", "O", "G"},
             {"O", "W", "O", "O"},
             {"O", "G", "O", "O"}};
-        output = markOpenedSpace(input);
+        // Method 1.
+        output = markOpenedSpaceByTopBottomAndBottomUp(input);
         System.out.println("Input:");
         print(input);
-        System.out.println("Output:");
+        System.out.println("Output from markOpenedSpaceByTopBottomAndBottomUp():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+        // Method 2.
+        output = markOpenedSpaceByBFSAndFIFO(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByBFSAndFIFO():");
         print(output);
         System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
 
@@ -102,10 +121,18 @@ public class Quiz_OpenedSpaceInMuseum {
             {"O", "W", "W", "O"},
             {"O", "W", "O", "O"},
             {"O", "O", "O", "G"}};
-        output = markOpenedSpace(input);
+        // Method 1.
+        output = markOpenedSpaceByTopBottomAndBottomUp(input);
         System.out.println("Input:");
         print(input);
-        System.out.println("Output:");
+        System.out.println("Output from markOpenedSpaceByTopBottomAndBottomUp():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+        // Method 2.
+        output = markOpenedSpaceByBFSAndFIFO(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByBFSAndFIFO():");
         print(output);
         System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
 
@@ -128,10 +155,61 @@ public class Quiz_OpenedSpaceInMuseum {
             {"O", "W", "G", "W", "O"},
             {"O", "W", "W", "W", "O"},
             {"O", "O", "O", "O", "O"}};
-        output = markOpenedSpace(input);
+        // Method 1.
+        output = markOpenedSpaceByTopBottomAndBottomUp(input);
         System.out.println("Input:");
         print(input);
-        System.out.println("Output:");
+        System.out.println("Output from markOpenedSpaceByTopBottomAndBottomUp():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+        // Method 2.
+        output = markOpenedSpaceByBFSAndFIFO(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByBFSAndFIFO():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+
+        // G O O O O O O O
+        // O O W W O O O O
+        // O O G W O G O O
+        // O O O O O O O O
+        // G O O O W W O O
+        // W W O O W G O O
+        // O O O O O O O O
+        // O O O O O O O G
+        //
+        //    to
+        //
+        // G 1 2 3 3 2 3 4
+        // 1 2 W W 2 1 2 3
+        // 2 1 G W 1 G 1 2
+        // 1 2 1 2 2 1 2 3
+        // G 1 2 3 W W 2 3
+        // W W 3 4 W G 1 2
+        // 6 5 4 3 2 1 2 1
+        // 7 6 5 4 3 2 1 G
+        input = new String[][]{
+            {"G", "O", "O", "O", "O", "O", "O", "O"},
+            {"O", "O", "W", "W", "O", "O", "O", "O"},
+            {"O", "O", "G", "W", "O", "G", "O", "O"},
+            {"O", "O", "O", "O", "O", "O", "O", "O"},
+            {"G", "O", "O", "O", "W", "W", "O", "O"},
+            {"W", "W", "O", "O", "W", "G", "O", "O"},
+            {"O", "O", "O", "O", "O", "O", "O", "O"},
+            {"O", "O", "O", "O", "O", "O", "O", "G"}};
+        // Method 1.
+        output = markOpenedSpaceByTopBottomAndBottomUp(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByTopBottomAndBottomUp():");
+        print(output);
+        System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
+        // Method 2.
+        output = markOpenedSpaceByBFSAndFIFO(input);
+        System.out.println("Input:");
+        print(input);
+        System.out.println("Output from markOpenedSpaceByBFSAndFIFO():");
         print(output);
         System.out.println(String.format(Locale.ENGLISH, "%d iteration.\n", mIterationCount));
     }
@@ -144,7 +222,13 @@ public class Quiz_OpenedSpaceInMuseum {
     private static final String OPEN = String.valueOf("O");
     private static final String GUARD = String.valueOf("G");
 
-    private String[][] markOpenedSpace(String[][] museum) {
+    /**
+     * Brutal force solution to do the BFS to assign the steps to the visited
+     * nodes and adjust the steps from bottom-to-top.
+     * <br/>
+     * Actually, it's error prone when given a complicated sample.
+     */
+    private String[][] markOpenedSpaceByTopBottomAndBottomUp(String[][] museum) {
         String[][] clone = new String[museum.length][museum.length];
         List<Position> guardPosList = new ArrayList<>();
 
@@ -243,10 +327,170 @@ public class Quiz_OpenedSpaceInMuseum {
         return step + 1;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Growing the steps from the "G" nodes, one at a time so that we make sure
+     * every step is guaranteed to be the smallest number away from the closest
+     * "G" node.
+     *
+     * 1) Find all the "G" and stores their positions in a FIFO queue.
+     * <br/>
+     * 2) Pop from the FIFO queue and do a 1-level BFS to the popped node. If
+     * it founds the adjacent "O" node, assign the step and put them into the
+     * FIFO queue.
+     * <br/>
+     * 3) Repeat the above process until the FIFO queue is empty.
+     */
+    private String[][] markOpenedSpaceByBFSAndFIFO(String[][] museum) {
+        String[][] clone = new String[museum.length][museum.length];
+        LinkedList<Position> fifo = new LinkedList<>();
+
+        // DEBUG: Init the iteration counter.
+        mIterationCount = 0;
+
+        // Clone the museum.
+        for (int y = 0; y < museum.length; ++y) {
+            for (int x = 0; x < museum.length; ++x) {
+                clone[y][x] = museum[y][x];
+
+                // Queue the "G" node.
+                if (isGuard(museum, x, y)) {
+                    fifo.addLast(new Position(x, y));
+                }
+
+                // DEBUG: Accumulate the iteration counter.
+                ++mIterationCount;
+            }
+        }
+
+        // Consume the fifo queue.
+        while (!fifo.isEmpty()) {
+            Position pos = fifo.removeFirst();
+            List<Position> adjacentGrids = markAdjacentGrid(clone, pos.x, pos.y);
+
+            // Add the adjacent grids to the fifo queue.
+            if (!adjacentGrids.isEmpty()) {
+                fifo.addAll(adjacentGrids);
+            }
+
+            // DEBUG: Accumulate the iteration counter.
+            ++mIterationCount;
+        }
+
+        return clone;
+    }
+
+    private boolean isGuard(String[][] museum,
+                            int x,
+                            int y) {
+        return GUARD.equalsIgnoreCase(museum[y][x]);
+    }
+
+    private boolean isOpened(String[][] museum,
+                             int x,
+                             int y) {
+        return OPEN.equalsIgnoreCase(museum[y][x]);
+    }
+
+    private int getStep(String[][] museum,
+                        int x,
+                        int y) {
+        try {
+            return Integer.parseInt(museum[y][x]);
+        } catch (Throwable ignored) {
+            // DO NOTHING.
+        }
+
+        return 0;
+    }
+
+    private void setStep(String[][] museum,
+                        int x,
+                        int y,
+                        int step) {
+        try {
+            museum[y][x] = Integer.toString(step);
+        } catch (Throwable ignored) {
+            // DO NOTHING.
+        }
+    }
+
+    private boolean ifHasAdjacentOpened(String[][] museum,
+                                        int x,
+                                        int y) {
+        int count = 0;
+        int right = x + 1 < museum.length ? x + 1 : x;
+        int left = x - 1 >= 0 ? x - 1 : x;
+        int down = y + 1 < museum.length ? y + 1 : y;
+        int up = y - 1 >= 0 ? y - 1 : y;
+
+        // Try up.
+        if (up != y && isOpened(museum, x, up)) {
+            ++count;
+        }
+        // Try right.
+        if (right != x && isOpened(museum, right, y)) {
+            ++count;
+        }
+        // Try down.
+        if (down != y && isOpened(museum, x, down)) {
+            ++count;
+        }
+        // Try left.
+        if (left != x && isOpened(museum, left, y)) {
+            ++count;
+        }
+
+        return count > 0;
+    }
+
+    private List<Position> markAdjacentGrid(String[][] museum,
+                                            int x,
+                                            int y) {
+        List<Position> todo = new ArrayList<>();
+        int nextStep = isGuard(museum, x, y) ? 1 : getStep(museum, x, y) + 1;
+        int right = x + 1 < museum.length ? x + 1 : x;
+        int left = x - 1 >= 0 ? x - 1 : x;
+        int down = y + 1 < museum.length ? y + 1 : y;
+        int up = y - 1 >= 0 ? y - 1 : y;
+
+        // Try up.
+        if (up != y && isOpened(museum, x, up)) {
+            setStep(museum, x, up, nextStep);
+            if (ifHasAdjacentOpened(museum, x, up)) {
+                todo.add(new Position(x, up));
+            }
+        }
+        // Try right.
+        if (right != x && isOpened(museum, right, y)) {
+            setStep(museum, right, y, nextStep);
+            if (ifHasAdjacentOpened(museum, right, y)) {
+                todo.add(new Position(right, y));
+            }
+        }
+        // Try down.
+        if (down != y && isOpened(museum, x, down)) {
+            setStep(museum, x, down, nextStep);
+            if (ifHasAdjacentOpened(museum, x, down)) {
+                todo.add(new Position(x, down));
+            }
+        }
+        // Try left.
+        if (left != x && isOpened(museum, left, y)) {
+            setStep(museum, left, y, nextStep);
+            if (ifHasAdjacentOpened(museum, left, y)) {
+                todo.add(new Position(left, y));
+            }
+        }
+
+        return todo;
+    }
+
     private void print(String[][] space) {
-        for (int y = 0; y < space.length; ++y) {
-            for (int x = 0; x < space.length; ++x) {
-                System.out.print(space[y][x]);
+        for (String[] row : space) {
+            for (int x = 0; x < row.length; ++x) {
+                System.out.print(row[x]);
 
                 if (x < space.length - 1) {
                     System.out.print("   ");
@@ -263,7 +507,7 @@ public class Quiz_OpenedSpaceInMuseum {
         int x;
         int y;
 
-        public Position(int x, int y) {
+        Position(int x, int y) {
             this.x = x;
             this.y = y;
         }
