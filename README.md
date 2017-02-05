@@ -15,12 +15,29 @@ Tree
 * [BinarySearchTree](test/src/main/java/com/my/myalgorithm/challenge/tree/BinarySearchTree.java)
 * RedBlackTree (in-progress)
 * [Trie](test/src/main/java/com/my/myalgorithm/challenge/tree/AtoZTrie.java)
-
-Quiz
-----
-* [Find the biggest plus sign](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindBiggestPlusSign.java)
 * [Find the unmatching pair](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindUnmatchingPair.java)
-* [Find the letter combination of phone number](test/src/test/java/com/my/myalgorithm/challenge/Quiz_LetterCombinationsOfPhoneNumber.java)
+
+Dynamic Programming
+-------------------
+* [Coin change](test/src/test/java/com/my/myalgorithm/challenge/Quiz_CoinChange.java)
+* [Longest continuous subsequence](test/src/test/java/com/my/myalgorithm/challenge/Quiz_LongestIncreasingContinuousSubsequence.java)
+
+Divide and Conquer
+------------------
+* [Closest pair of point](test/src/test/java/com/my/myalgorithm/challenge/Quiz_ClosestPairOfPoint.java) (in-progress)
+
+Path Finding
+------------
+* [Find the biggest plus sign](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindBiggestPlusSign.java)
 * [Find the number of islands](test/src/test/java/com/my/myalgorithm/challenge/Quiz_NumberOfIslands.java)
-* [Find the amazing numbers](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindAmazingNumbers.java)
 * [Mark the opened space in a museum](test/src/test/java/com/my/myalgorithm/challenge/Quiz_OpenedSpaceInMuseum.java)
+
+Comprehensive
+-------------
+* [Find the amazing numbers](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindAmazingNumbers.java)
+
+Unknown
+-------
+* [Find the letter combination of phone number](test/src/test/java/com/my/myalgorithm/challenge/Quiz_LetterCombinationsOfPhoneNumber.java)
+* [Valid palindrome](test/src/test/java/com/my/myalgorithm/challenge/Quiz_ValidPalindrome.java)
+* [Find straight line fit points](test/src/test/java/com/my/myalgorithm/challenge/Quiz_FindStraightLineFItPoints.java) (in-progress)
