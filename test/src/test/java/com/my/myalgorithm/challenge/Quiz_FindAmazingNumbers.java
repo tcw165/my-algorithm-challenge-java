@@ -195,7 +195,7 @@ public class Quiz_FindAmazingNumbers {
      *           [4, -1,  0, 0, -1, 1, 1]
      *            ^   ^   ^  ^   ^  ^  ^
      *            |   |   |  |   |  |  |
-     *            |   |   |  |   |  |  +---- 4 left
+     *            |   |   |  |   |  |  +---- 4 left <-- The answer!
      *            |   |   |  |   |  +------- 3 left
      *            |   |   |  |   +---------- 2 left
      *            |   |   |  +-------------- 3 left

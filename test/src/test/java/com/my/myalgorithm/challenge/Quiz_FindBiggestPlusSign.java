@@ -27,7 +27,7 @@ import java.util.Locale;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Finding biggest  plus sign "+" in a sparse matrix (matrix with elements 0
+ * Finding biggest plus sign "+" in a sparse matrix (matrix with elements 0
  * and 1)
  * <br/>
  * e.g
