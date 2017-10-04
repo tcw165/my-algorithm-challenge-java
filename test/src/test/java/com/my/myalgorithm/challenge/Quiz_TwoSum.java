@@ -69,10 +69,7 @@ public class Quiz_TwoSum {
 
             // Time complexity: O(1).
             if (map.containsKey(other)) {
-                result[0] = map.get(other);
-                result[1] = i;
-
-                return result;
+                return new int[] {map.get(other), i};
             }
             map.put(nums[i], i);
         }
