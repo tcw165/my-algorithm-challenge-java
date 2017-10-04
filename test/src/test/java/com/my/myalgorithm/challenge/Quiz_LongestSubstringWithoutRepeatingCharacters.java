@@ -103,6 +103,7 @@ public class Quiz_LongestSubstringWithoutRepeatingCharacters {
             int longestLength = 1;
 
             // Create a sliding window.
+            // Time complexity: O(n)
             int subStrStart = 0;
             int subStrEnd = 0;
             while (subStrEnd < size) {
@@ -121,9 +122,12 @@ public class Quiz_LongestSubstringWithoutRepeatingCharacters {
                     }
                 }
 
+                // Update the longest sub-string length.
                 longestLength = Math.max(longestLength, subStrEnd - subStrStart + 1);
 
+                // Update the visited characters table.
                 map.put(s.charAt(subStrEnd), subStrEnd);
+
                 ++subStrEnd;
             }
 
