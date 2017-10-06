@@ -15,7 +15,7 @@ import org.junit.Test;
  * <p>
  * LeetCode: https://leetcode.com/problems/add-binary/description/
  */
-public class Quiz_AddTwoBitStrings {
+public class QuizEasy_AddTwoBitStrings {
 
     @Test
     public void test() {

@@ -40,7 +40,7 @@ import org.junit.experimental.max.MaxCore;
  * <br/>
  * https://www.kancloud.cn/kancloud/data-structure-and-algorithm-notes/73088
  */
-public class Quiz_LongestIncreasingContinuousSubsequence {
+public class QuizMedium_LongestIncreasingContinuousSubsequence {
 
     @Test
     public void answer() throws Exception {

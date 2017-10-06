@@ -21,7 +21,7 @@ import java.util.Map;
  * <p>
  * LeetCode: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
  */
-public class Quiz_LongestSubstringWithoutRepeatingCharacters {
+public class QuizMedium_LongestSubstringWithoutRepeatingCharacters {
 
     @Test
     public void test() {

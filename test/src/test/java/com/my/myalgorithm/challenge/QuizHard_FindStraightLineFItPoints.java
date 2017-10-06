@@ -39,7 +39,7 @@ import java.util.Stack;
  * <br/>
  * https://www.careercup.com/question?id=5722862468988928
  */
-public class Quiz_FindStraightLineFItPoints {
+public class QuizHard_FindStraightLineFItPoints {
 
     @Test
     public void answer1() throws Exception {

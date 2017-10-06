@@ -19,7 +19,7 @@ import org.junit.Test;
  * <p>
  * LeetCode: https://leetcode.com/problems/add-two-numbers/description/
  */
-public class Quiz_AddTwoNumbers {
+public class QuizEasy_AddTwoNumbers {
 
     @Test
     public void testEquals() {

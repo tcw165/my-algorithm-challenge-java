@@ -10,7 +10,7 @@ import java.util.Locale;
  * <p>
  * CareerCup: https://www.careercup.com/question?id=16425693
  */
-public class Quiz_CheckGivenFourPointsFormRectangle {
+public class QuizEasy_CheckGivenFourPointsFormRectangle {
 
     @Test
     public void givenPointsInCwOrder() {

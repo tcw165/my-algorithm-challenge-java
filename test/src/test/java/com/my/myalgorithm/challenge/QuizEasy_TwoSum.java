@@ -24,7 +24,7 @@ import java.util.Map;
  * <p>
  * LeetCode: https://leetcode.com/problems/two-sum/description/
  */
-public class Quiz_TwoSum {
+public class QuizEasy_TwoSum {
 
     @Test
     public void test_sol3() {

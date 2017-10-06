@@ -51,7 +51,7 @@ import static junit.framework.Assert.assertTrue;
  * <br/>
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
  */
-public class Quiz_LetterCombinationsOfPhoneNumber {
+public class QuizMedium_LetterCombinationsOfPhoneNumber {
 
     @Test
     public void answer1() throws Exception {

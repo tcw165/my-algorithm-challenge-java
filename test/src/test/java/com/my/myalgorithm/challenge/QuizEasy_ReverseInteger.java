@@ -17,7 +17,7 @@ import java.util.Queue;
  * <p>
  * LeetCode: https://leetcode.com/problems/reverse-integer/description/
  */
-public class Quiz_ReverseInteger {
+public class QuizEasy_ReverseInteger {
 
     @Test
     public void test() {

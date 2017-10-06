@@ -45,7 +45,7 @@ import static junit.framework.Assert.assertTrue;
  * <br/>
  * https://www.careercup.com/question?id=5653583535013888
  */
-public class Quiz_FindBiggestPlusSign {
+public class QuizMedium_FindBiggestPlusSign {
 
     /**
      * Using BFS/DFS.

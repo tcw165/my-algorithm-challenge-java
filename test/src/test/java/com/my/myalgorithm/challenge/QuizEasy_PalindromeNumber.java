@@ -41,7 +41,7 @@ import java.util.List;
  * <p/>
  * http://mathworld.wolfram.com/PalindromicNumber.html
  */
-public class Quiz_PalindromeNumber {
+public class QuizEasy_PalindromeNumber {
 
     @Test
     public void test_sol1() throws Exception {

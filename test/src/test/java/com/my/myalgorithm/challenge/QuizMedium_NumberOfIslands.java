@@ -59,7 +59,7 @@ import static org.junit.Assert.assertTrue;
  * <br/>
  * https://leetcode.com/problems/number-of-islands/
  */
-public class Quiz_NumberOfIslands {
+public class QuizMedium_NumberOfIslands {
 
     @Test
     public void answer1() throws Exception {

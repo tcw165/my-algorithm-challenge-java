@@ -65,7 +65,7 @@ import static junit.framework.Assert.assertTrue;
  * <br/>
  * https://www.careercup.com/question?id=5692379756494848
  */
-public class Quiz_FindUnmatchingPair {
+public class QuizMedium_FindUnmatchingPair {
 
     @Test
     public void answer1() throws Exception {

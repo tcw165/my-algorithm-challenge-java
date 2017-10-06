@@ -28,7 +28,7 @@ import java.util.Map;
  * <p>
  * Leetcode: https://leetcode.com/problems/group-anagrams/description/
  */
-public class Quiz_GroupAnagrams {
+public class QuizMedium_GroupAnagrams {
 
     @Test
     public void test1() {

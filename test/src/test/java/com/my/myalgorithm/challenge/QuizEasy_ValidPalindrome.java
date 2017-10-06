@@ -37,7 +37,7 @@ import org.junit.Test;
  * <br/>
  * https://leetcode.com/problems/valid-palindrome/
  */
-public class Quiz_ValidPalindrome {
+public class QuizEasy_ValidPalindrome {
 
     @Test
     public void test() throws Exception {

@@ -52,7 +52,7 @@ import static org.junit.Assert.assertTrue;
  * <br/>
  * https://www.careercup.com/question?id=6018738030641152
  */
-public class Quiz_FindAmazingNumbers {
+public class QuizHard_FindAmazingNumbers {
 
     @Test
     public void answer1() throws Exception {

@@ -49,7 +49,7 @@ import java.util.Map;
  * <br/>
  * https://leetcode.com/problems/coin-change/
  */
-public class Quiz_CoinChange {
+public class QuizMedium_CoinChange {
 
     @Test
     public void answer() throws Exception {
