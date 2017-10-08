@@ -23,10 +23,11 @@ package com.my.myalgorithm.challenge;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Stack;
+
 /**
  * Merge two sorted linked lists and return it as a new list. The new list
  * should be made by splicing together the nodes of the first two lists.
- * <p/>
  * Reference:
  * <p/>
  * LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/
