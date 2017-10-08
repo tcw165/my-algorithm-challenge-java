@@ -20,28 +20,35 @@
 
 package com.my.myalgorithm.challenge;
 
+import android.util.Size;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Stack;
-
 /**
- * Merge two sorted linked lists and return it as a new list. The new list
- * should be made by splicing together the nodes of the first two lists.
+ * Given a sorted array, remove the duplicates in place such that each element
+ * appear only once and return the new length.
+ * <p/>
+ * Do not allocate extra space for another array, you must do this in place with
+ * constant memory.
+ * <p/>
+ * For example,
+ * <pre>
+ *     Given input array nums = [1,1,2],
+ *     Your function should return length = 2, with the first two elements of
+ *     nums being 1 and 2 respectively. It doesn't matter what you leave beyond
+ *     the new length.
+ * </pre>
  * Reference:
  * <p/>
  * LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/
  */
-public class QuizEasy_MergeTwoSortedLists {
+public class QuizEasy_RemoveDuplicatesFromSortedArray {
 
     @Test
     public void test() throws Exception {
-        Assert.assertEquals(numToListNode(1, 3, 4, 5, 8, 10, 18),
-                            mergeTwoLists(numToListNode(1, 8, 10, 18),
-                                          numToListNode(3, 4, 5)));
-        Assert.assertEquals(numToListNode(1, 3, 5, 7, 10, 13, 18),
-                            mergeTwoLists(numToListNode(1, 7, 10, 18),
-                                          numToListNode(3, 5, 13)));
+        Assert.assertEquals(2, removeDuplicates(new int[]{1, 1, 2}));
+        Assert.assertEquals(6, removeDuplicates(new int[]{1, 2, 3, 3, 4, 5, 5, 5, 6}));
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -50,83 +57,25 @@ public class QuizEasy_MergeTwoSortedLists {
     // Solution #1 ////////////////////////////////////////////////////////////
 
     /**
-     * Beats 49.23% on LeetCode.
+     * Beats 22.65% on LeetCode.
      */
-    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        // Essentially is the merge part of "insertion sort".
-        final ListNode mergedHead = new ListNode(0);
+    private int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
 
-        // Time complexity: O(m + n);
-        ListNode merged = mergedHead;
-        ListNode i = l1;
-        ListNode j = l2;
-        while (i != null || j != null) {
-            if (i == null) {
-                merged.next = j;
-                break;
-            } else if (j == null) {
-                merged.next = i;
-                break;
-            } else {
-                if (i.val < j.val) {
-                    // Take and go to next.
-                    merged.next = i;
-                    merged = merged.next;
-                    i = i.next;
-                } else {
-                    // Take and go to next.
-                    merged.next = j;
-                    merged = merged.next;
-                    j = j.next;
-                }
+        // Since the array is already sorted, we can keep two pointers i and j,
+        // where i is the slow-runner while j is the fast-runner. As long as
+        // nums[i] = nums[j], we increment j to skip the duplicate.
+        // When we encounter nums[j] ≠ nums[i], the duplicate run has ended so
+        // we must copy its value to nums[i + 1]. i is then incremented and we
+        // repeat the same process again until j reaches the end of array.
+        // Time complexity: O(n), space complexity: O(1).
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] != nums[i]) {
+                nums[++i] = nums[j];
             }
         }
 
-        return mergedHead.next;
-    }
-
-    private ListNode numToListNode(int... nums) {
-        if (nums == null) return null;
-
-        final ListNode head = new ListNode(0);
-
-        ListNode node = head;
-        for (int num : nums) {
-            node.next = new ListNode(num);
-            node = node.next;
-        }
-
-        return head.next;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Clazz //////////////////////////////////////////////////////////////////
-
-    private class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            ListNode node = (ListNode) o;
-
-            if (val != node.val) return false;
-            return next != null ? next.equals(node.next) : node.next == null;
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = val;
-            result = 31 * result + (next != null ? next.hashCode() : 0);
-            return result;
-        }
+        return i + 1;
     }
 }
