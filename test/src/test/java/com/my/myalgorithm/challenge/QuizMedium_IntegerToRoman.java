@@ -62,11 +62,11 @@ import org.junit.Test;
  * </pre>
  * Reference:
  * <p/>
- * LeetCode: https://leetcode.com/problems/roman-to-integer/description/
+ * LeetCode: https://leetcode.com/problems/integer-to-roman/description/
  * <p/>
  * Wiki: https://en.wikipedia.org/wiki/Roman_numerals
  */
-public class QuizEasy_IntegerToRoman {
+public class QuizMedium_IntegerToRoman {
 
     @Test
     public void test() throws Exception {
