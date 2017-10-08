@@ -31,6 +31,7 @@ import java.util.Stack;
  * <p/>
  * The brackets must close in the correct order, "()" and "()[]{}" are all
  * valid but "(]" and "([)]" are not.
+ * <p/>
  * Reference:
  * <p/>
  * LeetCode: https://leetcode.com/problems/valid-parentheses/description/
