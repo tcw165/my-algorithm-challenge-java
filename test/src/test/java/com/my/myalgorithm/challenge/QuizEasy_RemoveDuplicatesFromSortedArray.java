@@ -62,6 +62,43 @@ public class QuizEasy_RemoveDuplicatesFromSortedArray {
     private int removeDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
 
+        // For example:
+        // i is the slow runner; j is the fast runner
+        //
+        // [ 1 , 2 , 2 , 3 , 4 , 4 , 4 , 4 , 5 ]
+        //   i
+        //       j
+        //
+        // [ 1 , 2 , 2 , 3 , 4 , 4 , 4 , 4 , 5 ]
+        //       i
+        //           j
+        //
+        // [ 1 , 2 , 2 , 3 , 4 , 4 , 4 , 4 , 5 ]
+        //       i
+        //               j
+        //
+        // [ 1 , 2 ,(3), 3 , 4 , 4 , 4 , 4 , 5 ]
+        //           i
+        //               j
+        //
+        // [ 1 , 2 , 3 , 3 , 4 , 4 , 4 , 4 , 5 ]
+        //           i
+        //                   j
+        //
+        // [ 1 , 2 , 3 ,(4), 4 , 4 , 4 , 4 , 5 ]
+        //               i
+        //                   j
+        //
+        // skip duplicates...
+        //
+        // [ 1 , 2 , 3 , 4 , 4 , 4 , 4 , 4 , 5 ]
+        //               i
+        //                                   j
+        //
+        // [ 1 , 2 , 3 , 4 ,(5), 4 , 4 , 4 , 5 ]
+        //                   i
+        //                                   j
+
         // Since the array is already sorted, we can keep two pointers i and j,
         // where i is the slow-runner while j is the fast-runner. As long as
         // nums[i] = nums[j], we increment j to skip the duplicate.
