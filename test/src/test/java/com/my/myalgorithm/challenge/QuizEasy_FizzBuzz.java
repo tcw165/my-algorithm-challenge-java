@@ -11,7 +11,7 @@ import java.util.List;
  * n. But for multiples of three it should output “Fizz” instead of the number
  * and for the multiples of five output “Buzz”. For numbers which are multiples
  * of both three and five output “FizzBuzz”.
- * <p>
+ * <p/>
  * For example,
  * <pre>
  *   n = 15,
@@ -34,7 +34,8 @@ import java.util.List;
  *       "FizzBuzz"
  *   ]
  * </pre>
- * <p>
+ * References:
+ * <p/>
  * LeetCode: https://leetcode.com/problems/fizz-buzz/description/
  */
 public class QuizEasy_FizzBuzz {

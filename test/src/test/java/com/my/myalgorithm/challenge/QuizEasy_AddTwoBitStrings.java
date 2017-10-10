@@ -5,15 +5,18 @@ import org.junit.Test;
 
 /**
  * Given two binary strings, return their sum (also a binary string).
- * <p>
+ * <p/>
  * For example,
  * <pre>
  *   a = "11"
  *   b = "1"
  *   Return "100".
  * </pre>
- * <p>
- * LeetCode: https://leetcode.com/problems/add-binary/description/
+ * References:
+ * <br/>
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/add-binary/description/</li>
+ * </ul>
  */
 public class QuizEasy_AddTwoBitStrings {
 

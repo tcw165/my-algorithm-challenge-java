@@ -7,12 +7,12 @@ import org.junit.Test;
  * Design a stack that supports push, pop, top, and retrieving the minimum
  * element in constant time.
  * <ul>
- *     <li>push(x) -- Push element x onto stack.
- *     <li>pop() -- Removes the element on top of the stack.
- *     <li>top() -- Get the top element.
- *     <li>getMin() -- Retrieve the minimum element in the stack.
+ *     <li>push(x) -- Push element x onto stack.</li>
+ *     <li>pop() -- Removes the element on top of the stack.</li>
+ *     <li>top() -- Get the top element.</li>
+ *     <li>getMin() -- Retrieve the minimum element in the stack.</li>
  * </ul>
- * <p>
+ * <p/>
  * For example,
  * <pre>
  *   MinStack minStack = new MinStack();
@@ -24,8 +24,9 @@ import org.junit.Test;
  *   minStack.top();      --> Returns 0.
  *   minStack.getMin();   --> Returns -2.
  * </pre>
- * <p>
- * https://leetcode.com/problems/min-stack/description/
+ * Reference:
+ * <br/>
+ * LeetCode: https://leetcode.com/problems/min-stack/description/
  */
 public class QuizEasy_MinStack {
 

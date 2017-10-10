@@ -61,10 +61,11 @@ import org.junit.Test;
  * "DCXXI" is 621
  * </pre>
  * Reference:
- * <p/>
- * LeetCode: https://leetcode.com/problems/roman-to-integer/description/
- * <p/>
- * Wiki: https://en.wikipedia.org/wiki/Roman_numerals
+ * <br/>
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/roman-to-integer/description/</li>
+ *     <li>Wiki: https://en.wikipedia.org/wiki/Roman_numerals</li>
+ * </ul>
  */
 public class QuizEasy_RomanToInteger {
 

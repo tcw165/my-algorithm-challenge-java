@@ -35,10 +35,11 @@ import java.util.Stack;
  * matrix where all of the O"s in the matrix are replaced with the number of
  * how many spaces they are away from a guard, without being able to go through
  * any walls.
- * <br/>
+ * <p/>
  * Reference:
- * <br/>
- * https://www.careercup.com/question?id=5722862468988928
+ * <ul>
+ *     <li>https://www.careercup.com/question?id=5722862468988928</li>
+ * </ul>
  */
 public class QuizMedium_OpenedSpaceInMuseum {
 

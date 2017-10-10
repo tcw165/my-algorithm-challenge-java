@@ -35,11 +35,11 @@ import java.util.List;
  * 123454321 is a palindrome.
  * 123054321 is not a palindrome.
  * </pre>
- * Reference:
+ * References:
  * <p/>
- * https://leetcode.com/problems/palindrome-number/description/
+ * LeetCode: https://leetcode.com/problems/palindrome-number/description/
  * <p/>
- * http://mathworld.wolfram.com/PalindromicNumber.html
+ * Other: http://mathworld.wolfram.com/PalindromicNumber.html
  */
 public class QuizEasy_PalindromeNumber {
 
@@ -81,14 +81,14 @@ public class QuizEasy_PalindromeNumber {
         if (x < 0) return false;
 
         // Time complexity: O(n)
-        int rev = 0;
+        int reverse = 0;
         int num = x;
         while (num != 0) {
-            rev = rev * 10 + num % 10;
+            reverse = reverse * 10 + num % 10;
             num /= 10;
         }
 
-        return x == rev;
+        return x == reverse;
     }
 
     // Solution #1 ////////////////////////////////////////////////////////////

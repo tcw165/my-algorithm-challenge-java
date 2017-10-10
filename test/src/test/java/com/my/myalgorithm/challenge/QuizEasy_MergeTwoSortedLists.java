@@ -28,8 +28,9 @@ import org.junit.Test;
  * should be made by splicing together the nodes of the first two lists.
  * <p/>
  * Reference:
- * <p/>
- * LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/</li>
+ * </ul>
  */
 public class QuizEasy_MergeTwoSortedLists {
 

@@ -3,19 +3,18 @@ package com.my.myalgorithm.challenge;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 /**
  * Reverse digits of an integer.
- * <p>
+ * <p/>
  * For example,
  * <pre>
  *   x = 123, return 321
  *   x = -123, return -321
  * </pre>
- * <p>
- * LeetCode: https://leetcode.com/problems/reverse-integer/description/
+ * References:
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/reverse-integer/description/</li>
+ * </ul>
  */
 public class QuizEasy_ReverseInteger {
 
@@ -55,8 +54,5 @@ public class QuizEasy_ReverseInteger {
         }
 
         return (int) reverse;
-    }
-
-    private void print(float[][] points) {
     }
 }

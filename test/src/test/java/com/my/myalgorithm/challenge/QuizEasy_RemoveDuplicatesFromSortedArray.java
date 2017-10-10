@@ -40,8 +40,9 @@ import org.junit.Test;
  *     the new length.
  * </pre>
  * Reference:
- * <p/>
- * LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/description/</li>
+ * </ul>
  */
 public class QuizEasy_RemoveDuplicatesFromSortedArray {
 

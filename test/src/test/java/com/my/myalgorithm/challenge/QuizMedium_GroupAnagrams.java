@@ -1,7 +1,5 @@
 package com.my.myalgorithm.challenge;
 
-import android.util.SparseArray;
-
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,10 +11,10 @@ import java.util.Map;
 
 /**
  * Given an array of strings, group anagrams together.
- * <p>
+ * <p/>
  * For example, given: ["eat", "tea", "tan", "ate", "nat", "bat"],
  * Return:
- * <p>
+ * <p/>
  * <pre>
  *  [
  *    ["ate", "eat","tea"],
@@ -25,8 +23,11 @@ import java.util.Map;
  *  ]
  * </pre>
  * Note: All inputs will be in lower-case.
- * <p>
- * Leetcode: https://leetcode.com/problems/group-anagrams/description/
+ * <p/>
+ * References:
+ * <ul>
+ *     <li>https://leetcode.com/problems/group-anagrams/description/</li>
+ * </ul>
  */
 public class QuizMedium_GroupAnagrams {
 

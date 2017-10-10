@@ -31,9 +31,10 @@ import java.util.PriorityQueue;
  * describe its complexity.
  * <p/>
  * Reference:
- * <p/>
- * LeetCode: https://leetcode.com/problems/merge-k-sorted-lists/description/
- * LeetCode: https://leetcode.com/problems/merge-k-sorted-lists/solution/
+ * <ul>
+ *     <li>https://leetcode.com/problems/merge-k-sorted-lists/description/</li>
+ *     <li>https://leetcode.com/problems/merge-k-sorted-lists/solution/</li>
+ * </ul>
  */
 public class QuizHard_MergeKSortedLists {
 

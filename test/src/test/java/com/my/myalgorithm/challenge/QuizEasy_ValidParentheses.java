@@ -33,8 +33,10 @@ import java.util.Stack;
  * valid but "(]" and "([)]" are not.
  * <p/>
  * Reference:
- * <p/>
- * LeetCode: https://leetcode.com/problems/valid-parentheses/description/
+ * <br/>
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/valid-parentheses/description/</li>
+ * </ul>
  */
 public class QuizEasy_ValidParentheses {
 

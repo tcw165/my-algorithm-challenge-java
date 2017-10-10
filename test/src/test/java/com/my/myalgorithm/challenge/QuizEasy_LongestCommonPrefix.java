@@ -26,9 +26,11 @@ import org.junit.Test;
 /**
  * Write a function to find the longest common prefix string amongst an array
  * of strings.
- * Reference:
  * <p/>
- * LeetCode: https://leetcode.com/problems/longest-common-prefix/description/
+ * Reference:
+ * <ul>
+ *     <li>LeetCode: https://leetcode.com/problems/longest-common-prefix/description/</li>
+ * </ul>
  */
 public class QuizEasy_LongestCommonPrefix {
 

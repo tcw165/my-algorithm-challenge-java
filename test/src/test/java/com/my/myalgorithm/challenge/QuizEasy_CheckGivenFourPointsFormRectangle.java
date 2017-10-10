@@ -7,8 +7,11 @@ import java.util.Locale;
 /**
  * given 4 points, whose x and y coordinates are both integers. they are all
  * different. write a function to check if they form a square.
- * <p>
- * CareerCup: https://www.careercup.com/question?id=16425693
+ * <p/>
+ * References:
+ * <ul>
+ *     <li>CareerCup: https://www.careercup.com/question?id=16425693</li>
+ * </ul>
  */
 public class QuizEasy_CheckGivenFourPointsFormRectangle {
 

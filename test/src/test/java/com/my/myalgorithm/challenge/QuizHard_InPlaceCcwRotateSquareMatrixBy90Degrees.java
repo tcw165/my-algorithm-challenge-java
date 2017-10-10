@@ -20,9 +20,6 @@
 
 package com.my.myalgorithm.challenge;
 
-import android.util.Range;
-import android.util.Size;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,8 +30,9 @@ import java.util.Arrays;
  * describe its complexity.
  * <p/>
  * Reference:
- * <p/>
- * GeeksForGeeks: http://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
+ * <ul>
+ *     <li>http://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/</li>
+ * </ul>
  */
 public class QuizHard_InPlaceCcwRotateSquareMatrixBy90Degrees {
 

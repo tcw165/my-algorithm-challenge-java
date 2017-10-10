@@ -49,8 +49,9 @@ import static org.junit.Assert.assertTrue;
  * </pre>
  * <br/>
  * Reference:
- * <br/>
- * https://www.careercup.com/question?id=6018738030641152
+ * <ul>
+ *     <li>https://www.careercup.com/question?id=6018738030641152</li>
+ * </ul>
  */
 public class QuizHard_FindAmazingNumbers {
 

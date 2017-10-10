@@ -28,14 +28,16 @@ import org.junit.Test;
  * which reads the same backward or forward, such as "madam" or "kayak".
  * Given a string, determine if it is a palindrome, considering only alphanumeric
  * characters and ignoring cases.
- * <br/>
+ * <p/>
  * <pre>
  * "A man, a plan, a canal: Panama" is a palindrome.
  * "race a car" is not a palindrome.
  * </pre>
  * Reference:
  * <br/>
- * https://leetcode.com/problems/valid-palindrome/
+ * <ul>
+ *     <li>https://leetcode.com/problems/valid-palindrome/</li>
+ * </ul>
  */
 public class QuizEasy_ValidPalindrome {
 
