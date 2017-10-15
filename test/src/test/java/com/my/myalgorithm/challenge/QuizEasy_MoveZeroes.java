@@ -20,8 +20,6 @@
 
 package com.my.myalgorithm.challenge;
 
-import android.util.Size;
-
 import org.junit.Assert;
 import org.junit.Test;
 
