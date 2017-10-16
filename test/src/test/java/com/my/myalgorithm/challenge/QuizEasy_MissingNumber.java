@@ -42,6 +42,7 @@ public class QuizEasy_MissingNumber {
     @Test
     public void test() {
         Assert.assertEquals(1, missingNumber(new int[]{0}));
+        Assert.assertEquals(0, missingNumber(new int[]{1}));
         Assert.assertEquals(2, missingNumber(new int[]{0, 1, 3}));
     }
 
@@ -59,9 +60,9 @@ public class QuizEasy_MissingNumber {
         // Sort the array.
         Arrays.sort(nums);
 
-        int current = nums[0];
-        for (int i = 0; i < nums.length; ++i) {
-            if (current != nums[i]) {
+        int current = 0;
+        for (int num : nums) {
+            if (current != num) {
                 break;
             } else {
                 ++current;
