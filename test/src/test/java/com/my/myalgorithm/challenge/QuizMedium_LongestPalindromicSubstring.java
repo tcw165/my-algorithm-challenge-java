@@ -196,7 +196,7 @@ public class QuizMedium_LongestPalindromicSubstring {
 
         for (int end = 0; end < n; ++end) {
             for (int start = end; start >= 0; --start) {
-                dp[start][end] = (s.charAt(start) == s.charAt(end) &&
+                dp[start][end] = (s.substring(start, start + 1).equals(s.substring(end, end + 1)) &&
                                   (end - start < 3 || dp[start + 1][end - 1]));
 
                 if (dp[start][end] &&
