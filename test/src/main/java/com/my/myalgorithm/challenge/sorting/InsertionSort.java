@@ -40,26 +40,87 @@ import java.util.List;
  * <br/>
  * e.g
  * <pre>
- *     5,2,4,6,1,3
- *       ^          (compare all the elements before index 1 with current one)
- * =>  2,5,4,6,1,3
- *       ^
- * =>  2,5,4,6,1,3
- *         ^        (compare all the elements before index 2 with current one)
- * =>  2,4,5,6,1,3
- *         ^
- * =>  2,4,5,6,1,3
- *           ^      (compare all the elements before index 3 with current one)
- * =>  2,4,5,6,1,3
- *           ^
- * =>  2,4,5,6,1,3
- *             ^    (compare all the elements before index 4 with current one)
- * =>  1,2,4,5,6,3
- *             ^
- * =>  1,2,4,5,6,3
- *               ^  (compare all the elements before index 5 with current one)
- * =>  1,2,3,4,5,6
- *               ^
+ * Given a=[5, 2, 4, 6, 1, 3]
+ *
+ * a= [5],[2], 4 , 6 , 1 , 3
+ *         i
+ *     k   j                  => lq(a[j], a[k]) == true
+ *
+ * a=  2 , 5 , 4 , 6 , 1 , 3
+ *         i
+ *     j
+ *
+ * a=  2 ,[5],[4], 6 , 1 , 3
+ *             i
+ *         k   j              => lq(a[j], a[k]) == true
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *             i
+ *     k   j
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *             i
+ *     j
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *                 i
+ *             k   j
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *                 i
+ *         k   j
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *                 i
+ *     k   j
+ *
+ * a=  2 , 4 , 5 , 6 , 1 , 3
+ *                 i
+ *     j
+ *
+ * a=  2 , 4 , 5 ,[6],[1], 3
+ *                     i
+ *                 k   j     => lessThan(a[j], a[k]) == true
+ *
+ * a=  2 , 4 ,[5],[1], 6 , 3
+ *                     i
+ *             k   j         => lessThan(a[j], a[k]) == true
+ *
+ * a=  2 ,[4],[1], 5 , 6 , 3
+ *                     i
+ *         k   j             => lessThan(a[j], a[k]) == true
+ *
+ * a= [2],[1], 4 , 5 , 6 , 3
+ *                     i
+ *     k   j                 => lessThan(a[j], a[k]) == true
+ *
+ * a=  1 , 2 , 4 , 5 , 6 , 3
+ *                     i
+ *     j
+ *
+ * a=  1 , 2 , 4 , 5 ,[6],[3]
+ *                         i
+ *                     k   j => lessThan(a[j], a[k]) == true
+ *
+ * a=  1 , 2 , 4 ,[5],[3], 6
+ *                         i
+ *                 k   j     => lessThan(a[j], a[k]) == true
+ *
+ * a=  1 , 2 ,[4],[3], 5 , 6
+ *                         i
+ *             k   j         => lessThan(a[j], a[k]) == true
+ *
+ * a=  1 , 2 , 3 , 4 , 5 , 6
+ *                         i
+ *         k   j
+ *
+ * a=  1 , 2 , 3 , 4 , 5 , 6
+ *                         i
+ *     k   j
+ *
+ * a=  1 , 2 , 3 , 4 , 5 , 6
+ *                         i
+ *     j
  * </pre>
  */
 public class InsertionSort {
@@ -79,7 +140,7 @@ public class InsertionSort {
                    // Need to exchange the before and current element.
                    c.compare(before, current) < 0) {
                 list.set(j + 1, before);
-                // Get new before element.
+                // Get new "before" element.
                 if (--j >= 0) {
                     before = list.get(j);
                 }
